@@ -12,7 +12,7 @@ public class GameBettingOutcomeTest {
   @Test
   public void playerWith20Bets10WhenWinsBalanceIs30() throws Exception {
     Game game = createGameWithPlayerBalanceOf(20);
-    game.getPlayer().playerBets(10);
+    game.getPlayer().placeBet(new Bet(10));
 
     game.getPlayer().playerWins();
 
@@ -23,7 +23,7 @@ public class GameBettingOutcomeTest {
   @Test
   public void playerWith80Bets70WhenTiesBalanceIs80() throws Exception {
     Game game = createGameWithPlayerBalanceOf(80);
-    game.getPlayer().playerBets(70);
+    game.getPlayer().placeBet(new Bet(70));
 
     game.getPlayer().playerTies();
 
@@ -35,7 +35,7 @@ public class GameBettingOutcomeTest {
   public void playerWith35Bets30WhenLosesBalanceIs5() throws Exception {
     Game game = createGameWithPlayerBalanceOf(35);
 
-    game.getPlayer().playerBets(30);
+    game.getPlayer().placeBet(new Bet(30));
     game.getPlayer().playerLoses();
 
     assertThat(game.getPlayer().playerBalance())
@@ -46,7 +46,7 @@ public class GameBettingOutcomeTest {
   public void playerWith40Bets15BalanceIs25() throws Exception {
     Game game = createGameWithPlayerBalanceOf(40);
 
-    game.getPlayer().playerBets(15);
+    game.getPlayer().placeBet(new Bet(15));
 
     assertThat(game.getPlayer().playerBalance())
         .isEqualTo(25);
