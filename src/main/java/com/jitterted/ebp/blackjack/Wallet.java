@@ -1,6 +1,7 @@
 package com.jitterted.ebp.blackjack;
 
 public class Wallet {
+
   private int balance = 0;
 
   public boolean isEmpty() {
@@ -15,7 +16,7 @@ public class Wallet {
     return balance;
   }
 
-  public void bet(int amount) {
+  public void deductMoney(int amount) {
     checkSufficientBalance(amount);
     balance -= amount;
   }

@@ -18,7 +18,9 @@ public class Player {
     }
 
     public void placeBet(Bet bet) {
-        wallet.bet(bet.amount());
+        // Deduct money before applying any bonus
+        wallet.deductMoney(bet.amount());
+        wallet.addMoney(bet.bonus());
         bets.add(bet);
     }
 
@@ -27,15 +29,19 @@ public class Player {
     }
 
     public void playerWins() {
-        wallet.addMoney(currentBetAmount() * 2);
+        betOutcome(2);
     }
 
     public void playerLoses() {
-        wallet.addMoney(currentBetAmount() * 0);
+        betOutcome(0);
     }
 
     public void playerTies() {
-        wallet.addMoney(currentBetAmount() * 1);
+        betOutcome(1);
+    }
+
+    private void betOutcome(int multiplier) {
+        wallet.addMoney(currentBetAmount() * multiplier);
     }
 
     public Hand getHand() {

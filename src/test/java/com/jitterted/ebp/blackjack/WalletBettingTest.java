@@ -11,7 +11,7 @@ public class WalletBettingTest {
     Wallet wallet = new Wallet();
     wallet.addMoney(18);
 
-    wallet.bet(7);
+    wallet.deductMoney(7);
 
     assertThat(wallet.balance())
         .isEqualTo(18 - 7);
@@ -22,8 +22,8 @@ public class WalletBettingTest {
     Wallet wallet = new Wallet();
     wallet.addMoney(30);
 
-    wallet.bet(15);
-    wallet.bet(14);
+    wallet.deductMoney(15);
+    wallet.deductMoney(14);
 
     assertThat(wallet.balance())
         .isEqualTo(30 - 15 - 14);
@@ -34,7 +34,7 @@ public class WalletBettingTest {
     Wallet wallet = new Wallet();
     wallet.addMoney(9);
 
-    wallet.bet(9);
+    wallet.deductMoney(9);
 
     assertThat(wallet.isEmpty())
         .isTrue();
@@ -46,7 +46,7 @@ public class WalletBettingTest {
     wallet.addMoney(20);
 
     assertThatThrownBy(() -> {
-      wallet.bet(21);
+      wallet.deductMoney(21);
     })
         .isInstanceOf(IllegalArgumentException.class);
   }

@@ -53,6 +53,16 @@ public class GameBettingOutcomeTest {
   }
 
   @Test
+  public void playerWith200Bets100Receives10BetBonusBalanceIs110() throws Exception {
+    Game game = createGameWithPlayerBalanceOf(200);
+
+    game.getPlayer().placeBet(new Bet(100));
+
+    assertThat(game.getPlayer().playerBalance())
+            .isEqualTo(110);
+  }
+
+  @Test
   public void playerDeposits18DollarsBalanceIs18Dollars() throws Exception {
     Game game = createGameWithPlayerBalanceOf(18);
 
